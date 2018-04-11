@@ -1,13 +1,27 @@
 <template lang="html">
-  <div class="">
-    筛选tab组件
+  <div class="" v-if="list">
+
+    
   </div>
 </template>
 
-<script type="es6">
+<script type="es6" module>
 export default {
+  props: {
+    list:"",
+    tabCurrent: ''
+  },
+  data (){
+    return {
+    }
+  },
+  methods:{
+    tabcurEv(){
+      this.$emit('tabcurEv')
+    }
+  }
 }
 </script>
 
-<style lang="css">
+<style lang="scss" module>
 </style>

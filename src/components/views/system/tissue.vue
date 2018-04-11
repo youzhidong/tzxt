@@ -174,6 +174,7 @@ export default {
   methods:{
     // 右边橍
     handleNodeClick(data){
+      console.log(data);
       if (!data.children) return;
       this.tableData= data.children; // 核心代码 实现双向绑定
       this.newButton= true;

@@ -1,16 +1,8 @@
 <template lang="html">
   <div class="work-search">
     <!-- 搜索组件 -->
-    <el-input
-      placeholder="昵称/手机/座机/QQ/微信/ID">
-      <i slot="prefix" class="el-input__icon el-icon-search"></i>
-    </el-input>
-    <div class="toggle" @click="screenShow = !screenShow">
-      <el-button type="text">{{screenShow ? '隐藏筛选': '显示筛选'}}</el-button>
-      <i slot="prefix" style="color:#409EFF;" class="el-icon-arrow-down"></i>
-    </div>
-    <transition name="slide-fade">
-      <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" size="mini" :inline="true" class="demo-ruleForm" v-show="screenShow">
+
+      <el-form :model="ruleForm2" :rules="rules" ref="ruleForm2" size="mini" :inline="true" class="demo-ruleForm">
         <el-form-item class="item" label="分配时间：">
           <el-date-picker v-model="ruleForm2.allotTime" type="daterange" range-separator="至" size="small" start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
         </el-form-item>
@@ -53,12 +45,12 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item class="item" style="margin-top:20px;">
-          <el-button @click="screenShow = false">取消</el-button>
+          <el-button v-on:click="_Esc">取消</el-button>
           <el-button type="success" @click="resetForm('ruleForm2')">重置</el-button>
-          <el-button @click="_Find" type="primary">查询</el-button>
+          <el-button v-on:click="_Find" type="primary">查询</el-button>
         </el-form-item>
       </el-form>
-    </transition>
+
   </div>
 </template>
 
@@ -92,13 +84,31 @@ export default {
       }
     },
     // 查询
-    _Find(){},
+    _Find(){
+      this.$emit("_Find",this.ruleForm2);
+    },
+    // 取消
+    _Esc(){
+      this.screenShow = false;
+      this.$emit('_Esc',this.screenShow);
+    }
   }
 }
 </script>
 
 <style scope lang="scss">
   .work-search{
+    position: absolute;
+    left: 8px;
+    top: 72px;
+    background: #fff;
+    box-shadow:
+      -4px 0px 10px #d5d8d9,   /*左边阴影*/
+      0px -4px 10px #d5d8d9,  /*上边阴影*/
+      4px 0px 10px #d5d8d9,  /*右边阴影*/
+      0px 4px 10px #d5d8d9; /*下边阴影*/
+    z-index: 500;
+    padding: 10px 15px 20px 15px;
     .el-date-editor--daterange.el-input__inner{
       width: 248px;
     }
@@ -109,17 +119,8 @@ export default {
       padding: 0px 15px;
     }
 
-    .slide-fade-enter-active {
-      transition: all .3s ease;
-    }
-    .slide-fade-leave-active {
-      transition: all .4s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-    }
-    .slide-fade-enter, .slide-fade-leave-to
-    /* .slide-fade-leave-active for below version 2.1.8 */ {
-      transform: translateX(10px);
-      opacity: 0;
-    }
+
   }
+
 
 </style>
