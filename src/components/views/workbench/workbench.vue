@@ -15,10 +15,10 @@
       </el-tabs>
     </div>
     <div class="work-right">
-      <v-contacts :mylist="workList" v-on:mylist=" val => workList = val"></v-contacts>
-      <v-studentInfo></v-studentInfo>
-      <v-followup></v-followup>
-      <v-eidtstudent v-show="eidtStudent"></v-eidtstudent>
+      <!-- 动态度加载右边的内容 -->
+      <transition name="move" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>
@@ -28,29 +28,21 @@ import Vsearch from './left/search.vue'; // 搜索组件
 import Vscreentab from './left/screenTab.vue'; // 筛选tab组件
 import Vstudentlist from './left/studentList.vue'; // 学员列表组件
 import Vline from './left/line.vue'; // 分割组件
-import Vcontacts from './right/contacts.vue';  // 联系学员组件
-import Vfollowup from './right/followUp.vue'; // 跟进信息组件
-import VstudentInfo from './right/studentInfo.vue'; // 学员信息组件
-import VeidtStudent from './right/eidtStudent.vue'; // 编辑学员信息组件
+
 
 export default {
   components:{
     'v-search': Vsearch,
     'v-screentab': Vscreentab,
     'v-studentlist': Vstudentlist,
-    'v-line': Vline,
-    'v-contacts': Vcontacts,
-    'v-studentInfo': VstudentInfo,
-    'v-followup': Vfollowup,
-    'v-eidtstudent': VeidtStudent
+    'v-line': Vline
   },
   created(){
     console.log('发ajax请求吧');
   },
   data(){
     return {
-      workList:1,
-      eidtStudent:false
+      workList:1
     }
   },
   methods:{
