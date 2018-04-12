@@ -3,48 +3,52 @@
     <div class="work-left">
       <el-tabs type="border-card">
         <el-tab-pane label="新机会">
+          <!-- 搜索 -->
           <el-input
             placeholder="昵称/手机/座机/QQ/微信/ID">
             <i slot="prefix" class="el-input__icon el-icon-search"></i>
           </el-input>
-
+          <!-- 显示隐藏筛选 -->
           <div class="toggle" @click="screenShow = !screenShow">
             <el-button type="text">{{screenShow ? '隐藏筛选': '显示筛选'}}</el-button>
             <i slot="prefix" style="color:#409EFF;" class="el-icon-arrow-down"></i>
           </div>
+          <!-- 筛选弹框 -->
           <transition name="fade">
             <v-search v-on:_Find="_Find" v-on:_Esc="_Esc" v-show="screenShow"></v-search>
           </transition>
+          <!-- tab筛选 -->
           <el-radio-group v-model="screentab.tabCurrent" class="screentab" @change="tabcurEv">
             <el-radio-button class="item" :label="item" v-for="item in screentab.list" :key="item" ></el-radio-button>
           </el-radio-group>
-
-          <v-line></v-line>
-          <p style="background:#F4F4F4; height:2px; width:400px; margin-left:-50px;"></p>
+          <!-- 分割线 -->
+          <v-line num="558745"></v-line>
+          <!-- 学员列表 -->
           <v-studentlist></v-studentlist>
         </el-tab-pane>
+
         <el-tab-pane label="预约单">预约单</el-tab-pane>
         <el-tab-pane label="回访">
-
+          <!-- 搜索 -->
           <el-input
             placeholder="昵称/手机/座机/QQ/微信/ID">
             <i slot="prefix" class="el-input__icon el-icon-search"></i>
           </el-input>
-
+          <!-- 显示隐藏筛选 -->
           <div class="toggle" @click="screenShow = !screenShow">
             <el-button type="text">{{screenShow ? '隐藏筛选': '显示筛选'}}</el-button>
             <i slot="prefix" style="color:#409EFF;" class="el-icon-arrow-down"></i>
           </div>
+          <!-- 筛选弹框 -->
           <transition name="fade">
             <v-search v-on:_Find="_Find" v-on:_Esc="_Esc" v-show="screenShow"></v-search>
           </transition>
-
+          <!-- tab筛选 -->
           <el-radio-group v-model="backscreentab.tabCurrent" class="screentab">
             <el-radio-button class="item" :label="item" v-for="item in backscreentab.list" :key="item" style="width:25%;"></el-radio-button>
           </el-radio-group>
-
-          <v-line></v-line>
-          <p style="background:#F4F4F4; height:2px; width:400px; margin-left:-50px;"></p>
+          <!-- 分割线 -->
+          <v-line num="888"></v-line>
           <v-studentlist></v-studentlist>
         </el-tab-pane>
         <el-tab-pane label="领取">定时任务补偿</el-tab-pane>
@@ -75,7 +79,7 @@ export default {
   created(){
     //console.log('发ajax请求吧');
     var ref = this;
-     this.$axios.get('/api/cc/dd')
+     this.$axios.get('api')
       .then(function (response) {
         console.log(response);
       })

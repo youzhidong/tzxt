@@ -1,13 +1,13 @@
 <template lang="html">
   <div class="contacts">
-    <div class="item" :class="followClass[index]"  v-for="(item,index) in followClass" :key="item">
-      <div class="warp" v-show ="index !== 4">
-        <h1>手机</h1>
-        <div class="next">
-          <i class="el-icon-arrow-right"></i>
+    <div class="item" :class="item.followClass"  v-for="(item,index) in contactsList" :key="index">
+      <div class="warp" >
+        <h1>{{item.name}}</h1>
+        <div class="next" v-show ="index !== 4">
+          <i class="el-icon-arrow-right" ></i>
         </div>
       </div>
-      <strong v-show ="index !== 4">17896754876</strong>
+      <strong>{{item.more[0]}}</strong>
     </div>
   </div>
 </template>
@@ -16,7 +16,31 @@
 export default {
   data(){
     return {
-      followClass:['back_tel','back_tel2','back_wexin','back_qq','back_add']
+      contactsList:[{
+        name: "手机",
+        followClass:'back_tel',
+        more:['18802691728','188021111','18802333']
+      },
+      {
+        name: "座机",
+        followClass:'back_tel2',
+        more:['23232','188021111','18802333']
+      },
+      {
+        name: "微信",
+        followClass:'back_wexin',
+        more:['323','555555555','3143545']
+      },
+      {
+        name: "QQ",
+        followClass:'back_qq',
+        more:['2323','3434343','3243455']
+      },
+      {
+        name: "",
+        followClass:'back_add',
+        more:[]
+      }]
     }
   }
 }

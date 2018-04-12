@@ -7,7 +7,12 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 
-Vue.prototype.$axios = axios;
+Vue.prototype.$axios = axios
+axios.defaults.baseURL = process.env.BASE_API
+// const service = axios.create({
+//   baseURL: process.env.BASE_API, // api的base_url
+//   timeout: 5000 // request timeout
+// })
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false

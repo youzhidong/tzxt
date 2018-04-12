@@ -1,5 +1,6 @@
 <template lang="html">
     <div class="studenList" @click="openInfo">
+      <p style="background:#F4F4F4; height:2px; width:400px; margin-left:-50px;"></p>
       <div class="item" v-for="item in 5">
         <div class="left">
           <p class="one">

@@ -1,13 +1,14 @@
 <template lang="html">
   <p :class="$style.line">
 		<span :class="$style.span_border"></span>
-		<span :class="$style.text">共有1173432个名片</span>
+		<span :class="$style.text">共有{{num}}个名片</span>
 		<span :class="$style.span_border"></span>
 	</p>
 </template>
 
 <script type="es6">
 export default {
+  props:['num']
 }
 </script>
 
